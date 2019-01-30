@@ -1,0 +1,15 @@
+*/target/
+*/logs/
+*/upload/
+!.mvn/wrapper/maven-wrapper.jar
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+### custom ###
+out
