@@ -1,13 +1,10 @@
-package com.example.demo;
+package com.example.demo.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
 
 /**
  * TODO
@@ -38,7 +35,15 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>(){
                     @Override
                     protected void initChannel(NioSocketChannel channel){
-                        channel.pipeline().addLast(new FirstServerHandler());
+//                        channel.pipeline().addLast(new FirstServerHandler());
+//                        channel.pipeline().addLast(new ServerHandler());
+                        channel.pipeline().addLast(new InBoundHandlerA());
+                        channel.pipeline().addLast(new InBoundHandlerB());
+                        channel.pipeline().addLast(new InBoundHandlerC());
+
+                        channel.pipeline().addLast(new OutBoundHandlerA());
+                        channel.pipeline().addLast(new OutBoundHandlerB());
+                        channel.pipeline().addLast(new OutBoundHandlerC());
                     }
                 });
 

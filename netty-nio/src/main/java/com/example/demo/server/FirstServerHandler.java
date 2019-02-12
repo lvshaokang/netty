@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
