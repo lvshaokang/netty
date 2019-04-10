@@ -22,7 +22,7 @@ import static com.example.demo.protocol.command.Command.*;
  * @date 2019/2/12
  */
 public class PacketCodeC {
-    private static final int MAGIC_NUMBER = 0x12345678;
+    public static final int MAGIC_NUMBER = 0x12345678;
 
     public static final PacketCodeC INSTANCE = new PacketCodeC();
 
@@ -48,6 +48,19 @@ public class PacketCodeC {
     public ByteBuf encode(ByteBufAllocator byteBufAllocator,Packet packet){
         ByteBuf byteBuf = byteBufAllocator.ioBuffer();
 
+        byte[] bytes = Serializer.DEFAULT.serialize(packet);
+
+        byteBuf.writeInt(MAGIC_NUMBER);
+        byteBuf.writeByte(packet.getVersion());
+        byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlgorithm());
+        byteBuf.writeByte(packet.getCommand());
+        byteBuf.writeInt(bytes.length);
+        byteBuf.writeBytes(bytes);
+
+        return byteBuf;
+    }
+
+    public ByteBuf encode(ByteBuf byteBuf,Packet packet){
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 
         byteBuf.writeInt(MAGIC_NUMBER);

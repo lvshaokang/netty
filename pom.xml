@@ -17,6 +17,7 @@
 
     <modules>
         <module>netty-nio</module>
+        <module>netty-nio-01</module>
     </modules>
 
     <dependencies>
