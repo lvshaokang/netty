@@ -18,6 +18,7 @@
     <modules>
         <module>netty-nio</module>
         <module>netty-nio-01</module>
+        <module>netty-group-chat-notice</module>
     </modules>
 
     <dependencies>
